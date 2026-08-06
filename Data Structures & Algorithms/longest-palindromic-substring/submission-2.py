@@ -1,0 +1,27 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ""
+        resLen = 0
+
+        for i in range(len(s)):
+            # odd length
+            l,r = i,i
+            while l >=0 and r < len(s) and s[l] == s[r]: # is it a palindrome? -> 2 pointers, l, r, and s[l] = s[r]
+                if (r-l + 1) > resLen: # check its the longest
+                    # greater than current result length
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+
+            # even length longestPalindrome
+            l, r = i, i+1
+            while l >=0 and r < len(s) and s[l] == s[r]:
+                if (r-l + 1) > resLen: 
+                    # greater than current result length
+                    res = s[l:r+1]
+                    resLen = r - l + 1
+                l -= 1
+                r += 1
+                
+        return res 
